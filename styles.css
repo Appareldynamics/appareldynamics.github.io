@@ -11,6 +11,16 @@
 
   --font-display: "Nunito", sans-serif;
   --font-body: "Inter", sans-serif;
+
+  /* Specific brand colors for buttons */
+  --whatsapp-green: #25d366;
+  --whatsapp-green-rgb: 37, 211, 102;
+  /* Instagram gradient colors */
+  --insta-grad-start: #fdf497;
+  --insta-grad-mid1: #fdf497;
+  --insta-grad-mid2: #fd5949;
+  --insta-grad-mid3: #d6249f;
+  --insta-grad-end: #285aeb;
 }
 
 /* Base Styles */
@@ -57,7 +67,7 @@ h4 {
 section {
   position: relative;
   overflow: hidden;
-  padding: 5rem 5%;
+  padding: 5rem 5%; /* Keep 5% horizontal padding */
 }
 
 /* Gradient separator below sections */
@@ -271,12 +281,15 @@ section:nth-child(even) {
   background: rgba(var(--text-dark-rgb), 0.1);
 }
 
-/* Apply grid styles directly to the content wrapper, *without* max-width here */
+/* Apply grid styles directly to the content wrapper, allowing it to span 100% minus padding */
 .features .feature-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  max-width: 1200px; /* Keep max-width for centering content on large screens */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .feature-card {
@@ -308,6 +321,9 @@ section:nth-child(even) {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+  max-width: 1200px; /* Keep max-width for centering */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .step {
@@ -375,13 +391,13 @@ section:nth-child(even) {
   text-align: center;
 }
 
-/* Apply grid styles directly to the grid wrapper, *without* max-width here */
+/* Apply grid styles directly to the grid wrapper, keep max-width for centering */
 .supply-network .facility-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
-  max-width: 1200px; /* Add max-width here if you want it centered */
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -397,7 +413,7 @@ section:nth-child(even) {
 /* Testimonials Marquee */
 .testimonials-marquee {
   background: #0c0f14;
-  padding: 5rem 0 4rem; /* Removed left/right padding */
+  padding: 5rem 0 4rem; /* Removed left/right padding to allow marquee to be full width */
   position: relative;
   overflow: hidden;
 }
@@ -452,13 +468,13 @@ section:nth-child(even) {
   background: rgba(var(--accent-orange-rgb), 0.1);
 }
 
-/* Apply grid styles directly to the grid wrapper, *without* max-width here */
+/* Apply grid styles directly to the grid wrapper, keep max-width for centering */
 .client-stats .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
-  max-width: 1200px; /* Add max-width here if you want it centered */
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -489,15 +505,13 @@ section:nth-child(even) {
   background: rgba(var(--primary-dark-rgb), 0.95);
 }
 
-/* Apply grid styles directly to the grid wrapper, *without* max-width here */
+/* Apply grid styles directly to the grid wrapper, keep max-width for centering */
 .case-studies .case-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin: 2rem auto 0;
-  max-width: 1200px; /* Add max-width here if you want it centered */
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1200px;
 }
 
 .case-card {
@@ -575,13 +589,13 @@ section:nth-child(even) {
   background: rgba(var(--text-dark-rgb), 0.1);
 }
 
-/* Apply grid styles directly to the container, *without* max-width here */
+/* Apply grid styles directly to the container, keep max-width for centering */
 .value-props .prop-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 3rem;
   margin-top: 2rem;
-  max-width: 1200px; /* Add max-width here if you want it centered */
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -627,8 +641,8 @@ section:nth-child(even) {
   padding: 4rem 2rem;
   border-radius: 8px;
   text-align: center;
-  /* Removed max-width here to allow it to fill section padding */
-  margin: 0 auto; /* Keep auto margins to center if container added later */
+  max-width: 800px; /* Re-added max-width to CTA box for form centering */
+  margin: 0 auto;
 }
 
 .cta-form {
@@ -687,10 +701,11 @@ section:nth-child(even) {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .social-links a {
-  color: var(--accent-orange);
+  color: var(--accent-orange); /* Base color for social links */
   text-decoration: none;
   transition: opacity 0.3s ease;
 }
@@ -734,6 +749,7 @@ section:nth-child(even) {
   color: var(--neutral-cream);
   cursor: pointer;
   transition: color 0.3s ease;
+  z-index: 10;
 }
 
 .modal-content .close-btn:hover {
@@ -757,7 +773,7 @@ section:nth-child(even) {
   font-family: var(--font-body);
   font-size: 16px;
   padding: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 16px; /* Keep margin-bottom for stacking */
   width: 100%;
   transition: border-color 0.3s;
 }
@@ -766,6 +782,31 @@ section:nth-child(even) {
 .modal-content textarea:focus {
   border-color: var(--accent-orange);
   outline: none;
+}
+
+/* Style for the new form row */
+.modal-form-row {
+  display: flex; /* Use flexbox to put items on one line */
+  gap: 1rem; /* Space between quantity and price */
+  margin-bottom: 16px; /* Match margin-bottom of other inputs */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  align-items: center; /* Vertically align items */
+}
+
+.modal-form-row input {
+  margin-bottom: 0; /* Remove bottom margin from inputs inside the row */
+  /* flex: 1; /* Removed equal flex */
+  min-width: 80px; /* Ensure minimum width */
+}
+
+/* Specific widths for inputs in the modal-form-row */
+.modal-form-row input[name="quantity"] {
+  flex: 0 0 calc(33.33% - 0.67rem); /* Approx 1/3rd minus portion of gap */
+  max-width: 150px; /* Prevent quantity field from getting too wide */
+}
+
+.modal-form-row input[name="target-price"] {
+  flex: 1 1 calc(66.67% - 0.33rem); /* Approx 2/3rds minus portion of gap, allow grow/shrink */
 }
 
 .upload-button {
@@ -793,22 +834,63 @@ section:nth-child(even) {
 
 .button-group {
   display: flex;
-  gap: 16px;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px; /* Space between stacked buttons */
   margin-top: 16px;
+}
+
+/* Separator style */
+.button-group .separator {
+  text-align: center;
+  margin: 10px 0; /* Adjust spacing around the separator */
+  color: rgba(var(--neutral-cream-rgb), 0.6); /* Subdued color */
+  font-size: 0.9rem;
+  position: relative; /* For the line */
+  overflow: hidden; /* Hide parts of the line */
+}
+
+.button-group .separator::before,
+.button-group .separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%; /* Length of the lines */
+  height: 1px;
+  background: rgba(var(--neutral-cream-rgb), 0.3); /* Color of the line */
+}
+
+.button-group .separator::before {
+  left: 0;
+}
+
+.button-group .separator::after {
+  right: 0;
+}
+
+.button-group button,
+.button-group a {
+  /* Apply styles to both buttons and links */
+  width: 100%; /* Make buttons full width */
+  flex: none; /* Prevent flex from making them share space */
+  display: inline-flex; /* Use flex for centering content inside */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and text */
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700; /* Apply font-weight to all buttons */
+  text-decoration: none; /* Remove underline from links */
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s,
+    color 0.3s; /* Add transitions */
 }
 
 .submit-btn {
   background: var(--accent-orange);
   border: none;
-  border-radius: 8px;
   color: #121212;
   cursor: pointer;
   font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  padding: 14px 24px;
-  flex: 1;
-  transition: transform 0.3s;
 }
 
 .submit-btn:hover {
@@ -816,30 +898,54 @@ section:nth-child(even) {
   box-shadow: 0 6px 12px rgba(var(--accent-orange-rgb), 0.3);
 }
 
+/* --- Outlined Buttons --- */
 .email-btn {
   background: transparent;
-  border: 2px solid var(--accent-orange);
-  border-radius: 8px;
-  color: var(--accent-orange);
-  cursor: pointer;
+  border: 2px solid var(--accent-orange); /* Default border */
+  color: var(--accent-orange); /* Default text color */
   font-family: var(--font-body);
-  font-size: 16px;
-  padding: 14px 24px;
-  text-decoration: none;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex: 1;
 }
 
 .email-btn:hover {
   background: rgba(var(--accent-orange-rgb), 0.1);
+  transform: translateY(-2px);
 }
 
-.email-btn svg path {
-  fill: currentColor;
+/* WhatsApp Button Styling */
+.whatsapp-btn {
+  background: var(--whatsapp-green);
+  border-color: var(--whatsapp-green);
+  color: white; /* White text on green background */
+}
+.whatsapp-btn:hover {
+  background: #20b75c; /* Slightly darker green on hover */
+  border-color: #20b75c;
+  transform: translateY(-2px);
+}
+.whatsapp-btn svg path {
+  fill: white; /* Ensure icon is white */
+}
+
+/* Instagram Button Styling */
+.insta-btn {
+  background: radial-gradient(
+    circle at 30% 107%,
+    var(--insta-grad-start) 0%,
+    var(--insta-grad-mid1) 5%,
+    var(--insta-grad-mid2) 45%,
+    var(--insta-grad-mid3) 60%,
+    var(--insta-grad-end) 90%
+  );
+  border: none; /* Remove border for gradient */
+  color: white; /* White text on gradient background */
+}
+.insta-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9; /* Subtle hover effect */
+}
+.insta-btn svg {
+  /* Optional: Adjust Instagram icon stroke color if needed */
+  /* stroke: white; */
 }
 
 /* Copy Toast */
@@ -880,27 +986,23 @@ section:nth-child(even) {
     padding: 8rem 1rem 6rem;
   }
 
-  .process-steps {
-    grid-template-columns: 1fr;
-  }
-
-  /* Adjust min width for grids within sections */
+  /* Allow grid containers within sections to fill space on mobile, no max-width */
   .features .feature-grid,
+  .process-steps,
   .client-stats .stats-grid,
   .case-studies .case-grid,
   .supply-network .facility-grid,
   .value-props .prop-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    /* Re-add max-width if you still want centering on small screens,
-        or leave it off to let them fill the 5% padding space */
-    /* max-width: 100%; */ /* Example if you want max-width */
+    max-width: none;
     margin-left: 0;
     margin-right: 0;
   }
 
-  /* Restore padding on cards/elements within mobile grids */
+  /* Adjust padding on elements within mobile grids */
   .feature-card,
+  .step,
   .stat-card,
   .case-card,
   .facility,
@@ -942,19 +1044,26 @@ section:nth-child(even) {
     padding: 0 2%; /* Match section padding */
   }
 
-  .button-group {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .submit-btn,
-  .email-btn {
-    width: 100%;
-    flex: none;
-  }
-
+  /* Modal adjustments for mobile */
   .modal-content {
     padding: 20px;
+  }
+
+  .modal-form-row {
+    flex-direction: column; /* Stack quantity and price on mobile */
+    gap: 0; /* Remove gap when stacked */
+  }
+
+  .modal-form-row input {
+    margin-bottom: 16px; /* Restore margin when stacked */
+    flex: none; /* Remove flex property when stacked */
+    min-width: auto; /* Remove min-width when stacked */
+    max-width: none; /* Remove max-width for quantity on mobile */
+  }
+
+  /* Button group already stacks on mobile due to main rule */
+  .button-group {
+    gap: 10px; /* Space between stacked buttons */
   }
 
   .modal-content .close-btn {
@@ -965,5 +1074,8 @@ section:nth-child(even) {
   .copy-toast {
     padding: 0.8rem 1.5rem;
     font-size: 0.9rem;
+  }
+  .social-links {
+    gap: 1rem; /* Reduce gap on smaller screens */
   }
 }

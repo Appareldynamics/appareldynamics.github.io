@@ -9,8 +9,12 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <!-- Consider adding a favicon -->
-    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <!-- Favicon Placeholder: You need to replace 'path/to/your/favicon.png'
+         with the actual path to your logo image file.
+         You cannot use plain text as a favicon. It needs to be an image file.
+         Common formats are .ico, .png, or .svg -->
+    <!-- Example (replace with your actual file): -->
+    <!-- <link rel="icon" href="assets/favicon.png" type="image/png"> -->
   </head>
   <body>
     <header class="header">
@@ -18,15 +22,12 @@
         <!-- Assuming logo is a link -->
         <a href="#" class="logo">Apparel Dynamics</a>
         <div class="nav-links">
-          <!-- This div currently only holds the CTA.
-               If you add more nav links (Home, About, etc.), they would go here -->
           <a href="#contact" class="nav-cta">Get Started</a>
         </div>
       </nav>
     </header>
 
     <section class="hero">
-      <!-- Only keeping the .video-container approach as defined in CSS -->
       <div class="video-container">
         <iframe
           src="https://www.youtube.com/embed/QPYsyOD98AU?autoplay=1&mute=1&loop=1&playlist=QPYsyOD98AU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1"
@@ -35,7 +36,6 @@
           allowfullscreen
         ></iframe>
       </div>
-      <!-- Keeping the overlay used in CSS -->
       <div class="video-overlay"></div>
       <div class="hero-content">
         <h1 class="hero-heading">
@@ -49,15 +49,11 @@
       </div>
     </section>
 
-    <!-- Using section:nth-child(even) background here -->
     <section class="features">
       <div class="container">
-        <!-- Keeping container for heading/intro text -->
         <h2>Why Choose Us?</h2>
       </div>
-      <!-- Removed extra .container wrapper from here -->
       <div class="feature-grid">
-        <!-- Apply grid styles to this element -->
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
           <h3>Lightning Fast</h3>
@@ -133,7 +129,6 @@
       </div>
     </section>
 
-    <!-- Using section:nth-child(even) background here -->
     <section class="testimonials-marquee">
       <h2>What Our Clients Say</h2>
       <div class="marquee-container">
@@ -161,12 +156,9 @@
 
     <section class="client-stats">
       <div class="container">
-        <!-- Keeping container for heading -->
         <h2>Our Track Record</h2>
       </div>
-      <!-- Removed extra .container wrapper from here -->
       <div class="stats-grid">
-        <!-- Apply grid styles to this element -->
         <div class="stat-card">
           <div class="stat-value">98%</div>
           <div class="stat-label">On-Time Delivery Rate</div>
@@ -182,15 +174,11 @@
       </div>
     </section>
 
-    <!-- Using section:nth-child(even) background here -->
     <section class="case-studies">
       <div class="container">
-        <!-- Keeping container for heading -->
         <h2>Success Stories</h2>
       </div>
-      <!-- Removed extra .container wrapper from here -->
       <div class="case-grid">
-        <!-- Apply grid styles to this element -->
         <div class="case-card">
           <img
             src="assets/IMG_0514.webp"
@@ -244,13 +232,11 @@
     </section>
 
     <section class="supply-network">
-      <!-- Removed extra .supply-content wrapper from here -->
       <h2>Global Supply Network</h2>
       <p>
         Vetted facilities across 5 countries with integrated quality control
       </p>
       <div class="facility-grid">
-        <!-- Apply grid styles to this element -->
         <div class="facility">🇵🇰 Pakistan<br />Knitwear Specialists</div>
         <div class="facility">🇧🇩 Bangladesh<br />Activewear Experts</div>
         <div class="facility">🇮🇳 India<br />Embroidery Masters</div>
@@ -259,11 +245,9 @@
       </div>
     </section>
 
-    <!-- Using section:nth-child(even) background here -->
     <section class="value-props">
-      <!-- Removed extra .prop-container wrapper from here -->
+      <h2>Why We’re Different</h2>
       <div class="prop-container">
-        <!-- Apply grid styles to this element -->
         <div class="prop-card">
           <h3>Traditional Manufacturing</h3>
           <ul class="prop-list">
@@ -320,21 +304,23 @@
             required
           />
 
-          <!-- NEW FIELDS ADDED HERE -->
-          <input
-            type="number"
-            name="quantity"
-            placeholder="Quantity"
-            required
-            min="1"
-          />
-          <input
-            type="text"
-            name="target-price"
-            placeholder="Target Price per Unit (e.g. $5.00)"
-            required
-          />
-          <!-- END NEW FIELDS -->
+          <!-- NEW FORM ROW FOR QUANTITY AND PRICE -->
+          <div class="modal-form-row">
+            <input
+              type="number"
+              name="quantity"
+              placeholder="Quantity"
+              required
+              min="1"
+            />
+            <input
+              type="text"
+              name="target-price"
+              placeholder="Target Price per Unit (e.g. $5.00)"
+              required
+            />
+          </div>
+          <!-- END NEW FORM ROW -->
 
           <textarea
             name="order-details"
@@ -349,7 +335,13 @@
           </div>
 
           <div class="button-group">
+            <!-- Send Inquiry Button (Full Width) -->
             <button type="submit" class="submit-btn">Send Inquiry →</button>
+
+            <!-- Separator -->
+            <div class="separator">-- OR --</div>
+
+            <!-- New Contact Options (Full Width) -->
             <button type="button" id="emailBtn" class="email-btn">
               <svg
                 width="20"
@@ -365,6 +357,54 @@
               </svg>
               Email Us Directly
             </button>
+
+            <a
+              href="https://www.instagram.com/apparel.dynamics/"
+              target="_blank"
+              class="insta-btn"
+            >
+              <!-- Instagram SVG Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-instagram"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              DM us on Insta
+            </a>
+
+            <a
+              href="https://wa.me/447360616445"
+              target="_blank"
+              class="whatsapp-btn"
+            >
+              <!-- Corrected WhatsApp SVG Icon -->
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.0355 0C5.46104 0 0.0354712 5.42557 0.0354712 12C0.0354712 14.3918 0.721795 16.6491 1.96956 18.578L0.0354712 24L6.07259 22.1016C7.80842 23.1069 9.82533 23.6045 12.0355 23.6045C18.6099 23.6045 24.0355 18.1789 24.0355 11.6045C24.0355 4.97916 18.6608 0 12.0355 0ZM12.0355 21.6045C10.131 21.6045 8.33979 21.1011 6.80714 20.1929L6.46413 19.9888L2.71575 21.1436L3.79118 17.557L3.56406 17.1945C2.40694 15.4048 1.77095 13.3135 1.77095 11.6045C1.77095 6.33944 6.01159 2.0988 11.2767 2.0988C13.8635 2.0988 16.3202 3.10574 18.1359 4.92148C19.9516 6.73722 20.9586 9.19394 20.9586 11.7807C20.9586 16.9998 16.7742 21.6045 12.0355 21.6045V21.6045ZM17.3211 14.1641C17.1455 14.0731 16.0555 13.5304 15.8449 13.4562C15.6342 13.382 15.5083 13.3449 15.3823 13.5304C15.2564 13.7159 14.7914 14.3095 14.6503 14.467C14.5091 14.6245 14.3832 14.6486 14.1571 14.5226C13.0046 13.9453 11.0347 13.2446 9.51803 10.7103C9.11105 10.0282 8.82178 9.43459 9.00729 9.25163C9.16483 9.10754 9.36063 8.84415 9.52208 8.64835C9.68354 8.45255 9.74657 8.32665 9.87247 8.08598C9.99837 7.8453 9.93535 7.63398 9.8443 7.54293C9.75325 7.45188 9.1383 7.16256 8.91218 7.06006C8.68606 6.95756 8.47473 6.99463 8.28922 6.99463C8.08333 6.99463 7.78075 7.06202 7.45512 7.41271C7.15253 7.74126 6.37997 8.49133 6.37997 9.95061C6.37997 11.4099 7.48139 12.8226 7.64284 13.0153C7.8043 13.2081 9.73463 16.3493 12.8518 17.6554C13.6263 17.9738 14.2292 18.1586 14.6828 18.2611C15.3823 18.4121 16.7017 17.7114 16.9803 17.3159C17.2589 16.9204 17.2589 16.5845 17.1793 16.4935C17.1073 16.4024 16.896 16.337 16.7204 16.2459Z"
+                  fill="currentColor"
+                />
+              </svg>
+              Chat with us on Whatsapp
+            </a>
           </div>
         </form>
       </div>
@@ -380,21 +420,15 @@
             University
           </p>
           <div class="social-links">
+            <!-- Instagram link (links to profile) - Keep this one -->
             <a href="https://www.instagram.com/apparel.dynamics" target="_blank"
               >Instagram</a
             >
+            <!-- WhatsApp link (links to chat start) - Keep this one -->
             <a href="https://wa.me/447360616445" target="_blank">WhatsApp</a>
           </div>
         </div>
         <!-- Add more footer sections here if needed, e.g., for links -->
-        <!--
-        <div class="footer-section">
-            <h4>Links</h4>
-            <a href="#">Home</a>
-            <a href="#process">Process</a>
-            <a href="#case-studies">Case Studies</a>
-        </div>
-        -->
       </div>
     </footer>
 
@@ -489,6 +523,7 @@
 
         const modalForm = uploadArea.closest("form");
         if (modalForm) {
+          // Append the hidden input directly to the form, not the upload area div
           modalForm.appendChild(hiddenInput);
         } else {
           console.error("Upload area must be inside a form.");

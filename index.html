@@ -267,20 +267,48 @@
 
     <section class="cta-section" id="contact">
       <div class="cta-box">
-        <h2>Get early access to apparel_Ai</h2>
-        <form
-          class="cta-form"
-          action="https://formspree.io/f/manoykoy"
-          method="POST"
-        >
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-          />
-          <button type="submit" class="cta-main">Get Access →</button>
-        </form>
+        <!-- MODIFIED: Added span with class for orange text -->
+        <h2>Get early access to <span class="text-orange">apparel_Ai</span></h2>
+        <p>
+          Join our waitlist and be the first to experience the future of
+          clothing manufacturing.
+        </p>
+
+        <!-- MODIFIED: Wrapper for form + success message -->
+        <div id="early-access-form-container">
+          <!-- MODIFIED: Added ID to form -->
+          <form
+            id="early-access-form"
+            class="cta-form"
+            action="https://formspree.io/f/xanoyzev"
+            method="POST"
+          >
+            <!-- MODIFIED: Added wrapper div for input/button -->
+            <div id="form-elements">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+              <button type="submit" class="cta-main">Get Access →</button>
+            </div>
+          </form>
+
+          <!-- MODIFIED: Added success message div (initially hidden) -->
+          <div
+            id="success-message"
+            style="
+              display: none;
+              margin-top: 1.5rem;
+              color: var(--neutral-cream);
+            "
+          >
+            Congrats on joining the BETA! You will receive an email when you
+            have been granted access to
+            <span class="text-orange">apparel_Ai</span>.
+          </div>
+        </div>
       </div>
     </section>
 
@@ -414,7 +442,7 @@
           <!-- Assuming logo is a link -->
           <a href="#" class="logo">Apparel Dynamics</a>
           <p>
-            © 2025 Apparel Dynamics<br />Founded by 2 Alumns of Warwick
+            © 2019 Apparel Dynamics<br />Founded by 2 Alumns of Warwick
             University
           </p>
           <div class="social-links">
@@ -433,10 +461,14 @@
     <!-- Copy Toast -->
     <div class="copy-toast">Email copied to clipboard!</div>
 
+    <!-- MODIFIED Script Section -->
     <script>
       // Define constants needed by multiple functions
       const modal = document.getElementById("modalOverlay");
-      const openBtns = document.querySelectorAll(".nav-cta, .cta-main");
+      // MODIFIED: Exclude early access button from opening modal using :not pseudo-class
+      const openBtns = document.querySelectorAll(
+        ".nav-cta, .cta-main:not(#early-access-form .cta-main)"
+      );
       const closeBtn = document.getElementById("closeBtn");
       const emailBtn = document.getElementById("emailBtn");
       const toast = document.querySelector(".copy-toast");
@@ -449,8 +481,11 @@
 
         openBtns.forEach((btn) => {
           btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            modal.style.display = "flex";
+            // This check might be redundant now due to the selector change, but keeps it safe
+            if (!btn.closest("#early-access-form")) {
+              e.preventDefault();
+              modal.style.display = "flex";
+            }
           });
         });
 
@@ -466,10 +501,11 @@
         };
       } else {
         console.warn(
-          "Modal elements not found! Check #modalOverlay, .nav-cta, .cta-main, #closeBtn"
+          "Modal elements not found! Check #modalOverlay, relevant .nav-cta / .cta-main, #closeBtn"
         );
       }
 
+      // --- Email Copy Button ---
       if (emailBtn && toast) {
         emailBtn.addEventListener("click", function (e) {
           e.preventDefault(); // Prevent default button behavior
@@ -492,94 +528,181 @@
         });
       }
 
-      // --- File Upload Implementation ---
-      // This waits for the DOM to be fully loaded before trying to find elements
+      // --- File Upload Implementation & Early Access Form (Run on DOMContentLoaded) ---
       document.addEventListener("DOMContentLoaded", function () {
+        // --- File Upload Logic ---
         const uploadArea = document.querySelector(".upload-button");
-        if (!uploadArea) {
-          console.warn("Upload area element (.upload-button) not found!");
-          return; // Exit if upload area doesn't exist
-        }
+        if (uploadArea) {
+          // Only run if upload area exists
+          // Create the hidden file input dynamically
+          const hiddenInput = document.createElement("input");
+          hiddenInput.type = "file";
+          hiddenInput.name = "attachment"; // Make sure this matches your Formspree setup
+          hiddenInput.multiple = true; // Allow multiple files
+          hiddenInput.hidden = true; // Keep it visually hidden
 
-        // Create the hidden file input dynamically
-        const hiddenInput = document.createElement("input");
-        hiddenInput.type = "file";
-        hiddenInput.name = "attachment"; // Make sure this matches your Formspree setup
-        hiddenInput.multiple = true; // Allow multiple files
-        hiddenInput.hidden = true; // Keep it visually hidden
+          const modalForm = uploadArea.closest("form");
+          if (modalForm) {
+            // Append the hidden input directly to the form, not the upload area div
+            modalForm.appendChild(hiddenInput);
+          } else {
+            console.error("Upload area must be inside a form.");
+            // Consider stopping further upload logic if form isn't found
+          }
 
-        const modalForm = uploadArea.closest("form");
-        if (modalForm) {
-          // Append the hidden input directly to the form, not the upload area div
-          modalForm.appendChild(hiddenInput);
+          if (modalForm) {
+            // Continue only if form was found
+            // Trigger hidden input click when the visible area is clicked
+            uploadArea.addEventListener("click", function (e) {
+              e.preventDefault();
+              if (e.target === uploadArea || e.target.tagName === "SPAN") {
+                hiddenInput.click();
+              }
+            });
+
+            // Update text when files are selected
+            hiddenInput.addEventListener("change", function () {
+              const fileCount = this.files.length;
+              const uploadTextSpan = uploadArea.querySelector("span");
+
+              if (uploadTextSpan) {
+                uploadArea.style.borderColor =
+                  fileCount > 0 ? "var(--accent-orange)" : "";
+                uploadArea.style.background =
+                  fileCount > 0 ? "rgba(var(--accent-orange-rgb), 0.1)" : "";
+                uploadTextSpan.textContent =
+                  fileCount === 0
+                    ? "Upload Design Files (Drag & Drop or Click)"
+                    : fileCount === 1
+                    ? "1 file selected"
+                    : `${fileCount} files selected`;
+              }
+            });
+
+            // --- Drag and Drop Handlers ---
+            function preventDefaults(e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+
+            ["dragenter", "dragover", "dragleave", "drop"].forEach(
+              (eventName) => {
+                document.body.addEventListener(
+                  eventName,
+                  preventDefaults,
+                  false
+                );
+              }
+            );
+
+            ["dragenter", "dragover"].forEach((eventName) => {
+              uploadArea.addEventListener(
+                eventName,
+                () => uploadArea.classList.add("dragover"),
+                false
+              );
+            });
+
+            ["dragleave", "drop"].forEach((eventName) => {
+              uploadArea.addEventListener(
+                eventName,
+                () => uploadArea.classList.remove("dragover"),
+                false
+              );
+            });
+
+            uploadArea.addEventListener("drop", function (e) {
+              const dt = e.dataTransfer;
+              const files = dt.files;
+              hiddenInput.files = files;
+              const changeEvent = new Event("change", { bubbles: true });
+              hiddenInput.dispatchEvent(changeEvent);
+            });
+          } // End if(modalForm) for upload setup
         } else {
-          console.error("Upload area must be inside a form.");
-          return;
-        }
+          // console.warn("Upload area element (.upload-button) not found!"); // Optional warning
+        } // End of if(uploadArea)
 
-        // Trigger hidden input click when the visible area is clicked
-        uploadArea.addEventListener("click", function (e) {
-          e.preventDefault();
-          if (e.target === uploadArea || e.target.tagName === "SPAN") {
-            hiddenInput.click();
-          }
-        });
+        // --- Early Access Form Handling (NEW) ---
+        const earlyAccessForm = document.getElementById("early-access-form");
+        const formElements = document.getElementById("form-elements");
+        const successMessage = document.getElementById("success-message");
 
-        // Update text when files are selected
-        hiddenInput.addEventListener("change", function () {
-          const fileCount = this.files.length;
-          const uploadTextSpan = uploadArea.querySelector("span");
+        if (earlyAccessForm && formElements && successMessage) {
+          earlyAccessForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default page reload/redirect
 
-          if (uploadTextSpan) {
-            uploadArea.style.borderColor =
-              fileCount > 0 ? "var(--accent-orange)" : "";
-            uploadArea.style.background =
-              fileCount > 0 ? "rgba(var(--accent-orange-rgb), 0.1)" : "";
-            uploadTextSpan.textContent =
-              fileCount === 0
-                ? "Upload Design Files (Drag & Drop or Click)"
-                : fileCount === 1
-                ? "1 file selected"
-                : `${fileCount} files selected`;
-          }
-        });
+            const formData = new FormData(earlyAccessForm);
+            const formAction = earlyAccessForm.action;
+            const submitButton = earlyAccessForm.querySelector(
+              'button[type="submit"]'
+            );
+            const originalButtonText = submitButton.innerHTML;
 
-        // --- Drag and Drop Handlers ---
-        function preventDefaults(e) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
+            // Optional: Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = "Submitting...";
 
-        ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-          document.body.addEventListener(eventName, preventDefaults, false);
-        });
-
-        ["dragenter", "dragover"].forEach((eventName) => {
-          uploadArea.addEventListener(
-            eventName,
-            () => uploadArea.classList.add("dragover"),
-            false
+            fetch(formAction, {
+              method: "POST",
+              body: formData,
+              headers: {
+                Accept: "application/json", // Important for Formspree AJAX
+              },
+            })
+              .then((response) => {
+                if (response.ok) {
+                  // Success! Hide form, show message
+                  formElements.style.display = "none";
+                  successMessage.style.display = "block";
+                  // No need to re-enable button as it's hidden now
+                } else {
+                  // Handle server errors (e.g., Formspree validation issues)
+                  response
+                    .json()
+                    .then((data) => {
+                      if (Object.hasOwn(data, "errors")) {
+                        alert(
+                          data["errors"]
+                            .map((error) => error["message"])
+                            .join(", ")
+                        );
+                      } else {
+                        alert(
+                          "Oops! There was a problem submitting your form. Please try again."
+                        );
+                      }
+                    })
+                    .catch(() => {
+                      // Catch error if response is not JSON
+                      alert(
+                        "Oops! There was an unexpected problem submitting your form. Please try again."
+                      );
+                    });
+                  // Re-enable button on error
+                  submitButton.disabled = false;
+                  submitButton.innerHTML = originalButtonText;
+                }
+              })
+              .catch((error) => {
+                // Handle network errors
+                console.error("Form submission error:", error);
+                alert(
+                  "Network error. Could not submit form. Please check your connection."
+                );
+                // Re-enable button on error
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+              });
+          });
+        } else {
+          console.warn(
+            "Early access form elements not found. Check IDs: early-access-form, form-elements, success-message"
           );
-        });
+        }
+      }); // End of DOMContentLoaded listener
 
-        ["dragleave", "drop"].forEach((eventName) => {
-          uploadArea.addEventListener(
-            eventName,
-            () => uploadArea.classList.remove("dragover"),
-            false
-          );
-        });
-
-        uploadArea.addEventListener("drop", function (e) {
-          const dt = e.dataTransfer;
-          const files = dt.files;
-          hiddenInput.files = files;
-          const changeEvent = new Event("change", { bubbles: true });
-          hiddenInput.dispatchEvent(changeEvent);
-        });
-      });
-
-      // --- Scroll Reveal Animation (Optional, requires elements with .reveal class) ---
+      // --- Scroll Reveal Animation (Keep existing code) ---
       const revealElements = document.querySelectorAll(".reveal");
       if (revealElements.length > 0) {
         const observerOptions = {

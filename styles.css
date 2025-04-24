@@ -645,6 +645,11 @@ section:nth-child(even) {
   margin: 0 auto;
 }
 
+/* NEW: Utility class for orange text */
+.text-orange {
+  color: var(--accent-orange);
+}
+
 .cta-form {
   margin-top: 2rem;
   display: flex;
@@ -653,7 +658,18 @@ section:nth-child(even) {
   flex-wrap: wrap;
 }
 
-.cta-form input[type="email"] {
+/* NEW: Target the wrapper div for the form elements */
+#form-elements {
+  display: flex; /* Keep original flex layout */
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%; /* Allow it to take available space */
+  max-width: 600px; /* Optional: constrain max width */
+  margin: 0 auto; /* Center it */
+}
+
+#form-elements input[type="email"] {
   flex-grow: 1;
   max-width: 400px;
   padding: 1rem;
@@ -663,8 +679,17 @@ section:nth-child(even) {
   color: var(--neutral-cream);
 }
 
-.cta-form input::placeholder {
+#form-elements input::placeholder {
   color: rgba(var(--neutral-cream-rgb), 0.7);
+}
+
+/* NEW: Styling for the success message */
+#success-message {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  /* Add other styles like text alignment if desired */
+  text-align: center;
+  margin-top: 1.5rem !important; /* Ensure margin is applied */
 }
 
 /* Footer */
@@ -811,7 +836,7 @@ section:nth-child(even) {
 
 .upload-button {
   background: transparent;
-  border: 2px dashed var(--accent-orange);
+  border: 2px dashed rgba(var(--accent-orange-rgb), 0.5); /* Made dashed border slightly less intense */
   border-radius: 8px;
   color: var(--neutral-cream);
   cursor: pointer;
@@ -825,6 +850,7 @@ section:nth-child(even) {
 
 .upload-button:hover {
   background: rgba(var(--accent-orange-rgb), 0.1);
+  border-color: var(--accent-orange);
 }
 
 .upload-button.dragover {
@@ -1033,10 +1059,18 @@ section:nth-child(even) {
     gap: 0.5rem;
   }
 
-  .cta-form input[type="email"] {
+  /* Adjust early access form elements on mobile */
+  #form-elements {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 300px; /* Adjust max-width for mobile */
+  }
+
+  #form-elements input[type="email"] {
     margin-bottom: 0.5rem;
     width: 100%;
-    max-width: 300px;
+    /* max-width: 300px; */ /* Already handled by parent max-width */
   }
 
   .marquee-track {

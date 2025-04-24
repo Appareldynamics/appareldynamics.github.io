@@ -3,68 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apparel Dynamics | AI-Powered Manufacturing Platform</title>
+    <title>Apparel Dynamics | Next-Gen Clothing Manufacturing</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Consider adding a favicon -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
   </head>
   <body>
     <header class="header">
       <nav class="nav-container">
-        <div class="logo">Apparel Dynamics</div>
+        <!-- Assuming logo is a link -->
+        <a href="#" class="logo">Apparel Dynamics</a>
         <div class="nav-links">
-          <a href="#manufacturing">Manufacturing</a>
-          <a href="#platform">Platform</a>
-          <a href="#capabilities">Capabilities</a>
+          <!-- This div currently only holds the CTA.
+               If you add more nav links (Home, About, etc.), they would go here -->
           <a href="#contact" class="nav-cta">Get Started</a>
         </div>
       </nav>
     </header>
 
     <section class="hero">
+      <!-- Only keeping the .video-container approach as defined in CSS -->
       <div class="video-container">
         <iframe
           src="https://www.youtube.com/embed/QPYsyOD98AU?autoplay=1&mute=1&loop=1&playlist=QPYsyOD98AU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen
-        >
-        </iframe>
+        ></iframe>
       </div>
+      <!-- Keeping the overlay used in CSS -->
       <div class="video-overlay"></div>
       <div class="hero-content">
-        <h1>From 1 to 1,000,000 Units: Global Production Without Barriers</h1>
+        <h1 class="hero-heading">
+          Democratizing Fashion Manufacturing: Your Vision, Our Global Network
+        </h1>
         <p class="hero-sub">
-          Zero MOQ apparel production across 5 global facilities
+          From Prototype to 100,000 Units - Zero MOQ, Real-Time Pricing, 14-Day
+          Global Delivery
         </p>
-        <a href="#contact" class="cta-main">Start Your Order →</a>
+        <a href="#contact" class="cta-main">Start Your Risk-Free Order →</a>
       </div>
     </section>
 
+    <!-- Using section:nth-child(even) background here -->
     <section class="features">
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>AI-Powered Design</h3>
-        <p>Create garments with intelligent assistance and 3D visualization</p>
+      <div class="container">
+        <!-- Keeping container for heading/intro text -->
+        <h2>Why Choose Us?</h2>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🌍</div>
-        <h3>Global Network</h3>
-        <p>5 specialized facilities with real-time production tracking</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📉</div>
-        <h3>Zero MOQ</h3>
-        <p>Produce from 1 unit to 100,000+ with same transparency</p>
+      <!-- Removed extra .container wrapper from here -->
+      <div class="feature-grid">
+        <!-- Apply grid styles to this element -->
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Fast</h3>
+          <p>Quick turnaround times, for the modern fashion industry</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Global Network</h3>
+          <p>5 specialized facilities with real-time production tracking</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📉</div>
+          <h3>Zero MOQ</h3>
+          <p>Produce from 1 unit to 100,000+ with same transparency</p>
+        </div>
       </div>
     </section>
 
     <section class="process">
       <div class="container">
         <h2>Your Manufacturing Journey</h2>
-
         <div class="process-steps">
           <!-- Step 1 -->
           <div class="step">
@@ -118,9 +132,10 @@
         </div>
       </div>
     </section>
+
+    <!-- Using section:nth-child(even) background here -->
     <section class="testimonials-marquee">
       <h2>What Our Clients Say</h2>
-
       <div class="marquee-container">
         <div class="marquee-track">
           <!-- First set of images -->
@@ -143,28 +158,137 @@
         </div>
       </div>
     </section>
-    <section class="supply-network">
-      <div class="supply-content">
-        <h2>Global Supply Network</h2>
-        <p>
-          Vetted facilities across 5 countries with integrated quality control
-        </p>
-        <div class="facility-grid">
-          <div class="facility">🇵🇰 Pakistan<br />Knitwear Specialists</div>
-          <div class="facility">🇧🇩 Bangladesh<br />Activewear Experts</div>
-          <div class="facility">🇮🇳 India<br />Embroidery Masters</div>
-          <div class="facility">🇻🇳 Vietnam<br />Technical Fabrics</div>
-          <div class="facility">🇨🇳 China<br />Automation Hub</div>
+
+    <section class="client-stats">
+      <div class="container">
+        <!-- Keeping container for heading -->
+        <h2>Our Track Record</h2>
+      </div>
+      <!-- Removed extra .container wrapper from here -->
+      <div class="stats-grid">
+        <!-- Apply grid styles to this element -->
+        <div class="stat-card">
+          <div class="stat-value">98%</div>
+          <div class="stat-label">On-Time Delivery Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">10,000+</div>
+          <div class="stat-label">Garments Produced Weekly</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Production Monitoring</div>
         </div>
       </div>
     </section>
 
-    <section class="cta-section">
+    <!-- Using section:nth-child(even) background here -->
+    <section class="case-studies">
+      <div class="container">
+        <!-- Keeping container for heading -->
+        <h2>Success Stories</h2>
+      </div>
+      <!-- Removed extra .container wrapper from here -->
+      <div class="case-grid">
+        <!-- Apply grid styles to this element -->
+        <div class="case-card">
+          <img
+            src="assets/IMG_0514.webp"
+            alt="Client logo"
+            class="client-logo"
+          />
+          <h3>UrbanThreads Apparel</h3>
+          <div class="case-details">
+            <p class="case-description">
+              Scaled from 50 to 5,000 units/month within 6 months
+            </p>
+            <div class="case-stats">
+              <div class="case-stat">
+                <div class="stat-number">78%</div>
+                <div class="stat-desc">Cost Reduction</div>
+              </div>
+              <div class="case-stat">
+                <div class="stat-number">14d</div>
+                <div class="stat-desc">Avg. Production Time</div>
+              </div>
+            </div>
+            <a href="#" class="case-link">Read Case Study →</a>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <img
+            src="assets/ELEVATE_LOGO_NO_BACKGROUND.webp"
+            alt="Client logo"
+            class="client-logo"
+          />
+          <h3>Elevate Activewear</h3>
+          <div class="case-details">
+            <p class="case-description">
+              Launched 12 new SKUs with zero inventory risk
+            </p>
+            <div class="case-stats">
+              <div class="case-stat">
+                <div class="stat-number">1.2M</div>
+                <div class="stat-desc">Units Sold</div>
+              </div>
+              <div class="case-stat">
+                <div class="stat-number">48h</div>
+                <div class="stat-desc">Prototype Turnaround</div>
+              </div>
+            </div>
+            <a href="#" class="case-link">Read Case Study →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="supply-network">
+      <!-- Removed extra .supply-content wrapper from here -->
+      <h2>Global Supply Network</h2>
+      <p>
+        Vetted facilities across 5 countries with integrated quality control
+      </p>
+      <div class="facility-grid">
+        <!-- Apply grid styles to this element -->
+        <div class="facility">🇵🇰 Pakistan<br />Knitwear Specialists</div>
+        <div class="facility">🇧🇩 Bangladesh<br />Activewear Experts</div>
+        <div class="facility">🇮🇳 India<br />Embroidery Masters</div>
+        <div class="facility">🇻🇳 Vietnam<br />Technical Fabrics</div>
+        <div class="facility">🇨🇳 China<br />Automation Hub</div>
+      </div>
+    </section>
+
+    <!-- Using section:nth-child(even) background here -->
+    <section class="value-props">
+      <!-- Removed extra .prop-container wrapper from here -->
+      <div class="prop-container">
+        <!-- Apply grid styles to this element -->
+        <div class="prop-card">
+          <h3>Traditional Manufacturing</h3>
+          <ul class="prop-list">
+            <li>❌ 8-12 Week Lead Times</li>
+            <li>❌ 1000+ Unit MOQs</li>
+            <li>❌ Hidden Costs</li>
+          </ul>
+        </div>
+        <div class="prop-card main-prop">
+          <h3>Our Revolutionary Model</h3>
+          <ul class="prop-list">
+            <li>✅ 7-14 Day Production</li>
+            <li>✅ 1 Unit to Unlimited Runs</li>
+            <li>✅ All-Inclusive Pricing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="contact">
       <div class="cta-box">
-        <h2>Start Your Manufacturing Journey</h2>
+        <h2>Get early access to apparel_Ai</h2>
         <form
           class="cta-form"
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="https://formspree.io/f/manoykoy"
           method="POST"
         >
           <input
@@ -178,25 +302,299 @@
       </div>
     </section>
 
+    <!-- Modal Structure -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-content">
+        <span class="close-btn" id="closeBtn">×</span>
+        <h2>Start Your Order</h2>
+        <form
+          action="https://formspree.io/f/manoykoy"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required
+          />
+
+          <!-- NEW FIELDS ADDED HERE -->
+          <input
+            type="number"
+            name="quantity"
+            placeholder="Quantity"
+            required
+            min="1"
+          />
+          <input
+            type="text"
+            name="target-price"
+            placeholder="Target Price per Unit (e.g. $5.00)"
+            required
+          />
+          <!-- END NEW FIELDS -->
+
+          <textarea
+            name="order-details"
+            placeholder="Order Details"
+            rows="4"
+            required
+          ></textarea>
+
+          <!-- The hidden file input is created dynamically by the JS -->
+          <div class="upload-button">
+            <span>Upload Design Files (Drag & Drop or Click)</span>
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="submit-btn">Send Inquiry →</button>
+            <button type="button" id="emailBtn" class="email-btn">
+              <svg
+                width="20"
+                height="16"
+                viewBox="0 0 20 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 4L10 9L2 4V2L10 7L18 2V4Z"
+                  fill="currentColor"
+                />
+              </svg>
+              Email Us Directly
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-section">
-          <div class="logo">Apparel Dynamics</div>
-          <p>© 2025 Apparel Dynamics<br />Warwick Alumni Founders</p>
+          <!-- Assuming logo is a link -->
+          <a href="#" class="logo">Apparel Dynamics</a>
+          <p>
+            © 2025 Apparel Dynamics<br />Founded by 2 Alumni of Warwick
+            University
+          </p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/apparel.dynamics" target="_blank"
+              >Instagram</a
+            >
+            <a href="https://wa.me/447360616445" target="_blank">WhatsApp</a>
+          </div>
         </div>
+        <!-- Add more footer sections here if needed, e.g., for links -->
+        <!--
         <div class="footer-section">
-          <h4>Manufacturing</h4>
-          <a href="#pakistan">Pakistan</a>
-          <a href="#bangladesh">Bangladesh</a>
-          <a href="#india">India</a>
+            <h4>Links</h4>
+            <a href="#">Home</a>
+            <a href="#process">Process</a>
+            <a href="#case-studies">Case Studies</a>
         </div>
-        <div class="footer-section">
-          <h4>Resources</h4>
-          <a href="#pricing">Pricing</a>
-          <a href="#support">Support</a>
-          <a href="https://www.instagram.com/apparel.dynamics/">Instagram</a>
-        </div>
+        -->
       </div>
     </footer>
+
+    <!-- Copy Toast -->
+    <div class="copy-toast">Email copied to clipboard!</div>
+
+    <script>
+      // Define constants needed by multiple functions
+      const modal = document.getElementById("modalOverlay");
+      const openBtns = document.querySelectorAll(".nav-cta, .cta-main");
+      const closeBtn = document.getElementById("closeBtn");
+      const emailBtn = document.getElementById("emailBtn");
+      const toast = document.querySelector(".copy-toast");
+      const email = "appareldynamics.sales@gmail.com"; // Make sure this is correct
+
+      // --- Modal Handling ---
+      if (modal && openBtns.length > 0 && closeBtn) {
+        // Ensure modal has position relative for close button absolute positioning
+        modal.querySelector(".modal-content").style.position = "relative";
+
+        openBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.style.display = "flex";
+          });
+        });
+
+        closeBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+
+        // Close modal if clicking outside the content
+        window.onclick = function (e) {
+          if (e.target == modal) {
+            modal.style.display = "none";
+          }
+        };
+      } else {
+        console.warn(
+          "Modal elements not found! Check #modalOverlay, .nav-cta, .cta-main, #closeBtn"
+        );
+      }
+
+      // --- Email Copy Functionality ---
+      if (emailBtn && toast) {
+        emailBtn.addEventListener("click", function (e) {
+          e.preventDefault(); // Prevent default button behavior
+
+          navigator.clipboard
+            .writeText(email)
+            .then(() => {
+              // Show toast notification
+              toast.classList.add("visible");
+
+              // Hide toast after 2 seconds
+              setTimeout(() => {
+                toast.classList.remove("visible");
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to copy email:", err);
+              // Optional: Show an error message to the user in the UI
+              alert("Failed to copy email. Please copy it manually: " + email);
+            });
+        });
+      } else {
+        if (!emailBtn)
+          console.warn(
+            "Email button (#emailBtn) not found for copy functionality."
+          );
+        if (!toast)
+          console.warn(
+            "Copy toast element (.copy-toast) not found for copy functionality."
+          );
+      }
+
+      // --- File Upload Implementation ---
+      // This waits for the DOM to be fully loaded before trying to find elements
+      document.addEventListener("DOMContentLoaded", function () {
+        const uploadArea = document.querySelector(".upload-button");
+        if (!uploadArea) {
+          console.warn("Upload area element (.upload-button) not found!");
+          return; // Exit if upload area doesn't exist
+        }
+
+        // Create the hidden file input dynamically
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "file";
+        hiddenInput.name = "attachment"; // Make sure this matches your Formspree setup
+        hiddenInput.multiple = true; // Allow multiple files
+        hiddenInput.hidden = true; // Keep it visually hidden
+
+        const modalForm = uploadArea.closest("form");
+        if (modalForm) {
+          modalForm.appendChild(hiddenInput);
+        } else {
+          console.error("Upload area must be inside a form.");
+          return;
+        }
+
+        // Trigger hidden input click when the visible area is clicked
+        uploadArea.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (e.target === uploadArea || e.target.tagName === "SPAN") {
+            hiddenInput.click();
+          }
+        });
+
+        // Update text when files are selected
+        hiddenInput.addEventListener("change", function () {
+          const fileCount = this.files.length;
+          const uploadTextSpan = uploadArea.querySelector("span");
+
+          if (uploadTextSpan) {
+            uploadArea.style.borderColor =
+              fileCount > 0 ? "var(--accent-orange)" : "";
+            uploadArea.style.background =
+              fileCount > 0 ? "rgba(var(--accent-orange-rgb), 0.1)" : "";
+            uploadTextSpan.textContent =
+              fileCount === 0
+                ? "Upload Design Files (Drag & Drop or Click)"
+                : fileCount === 1
+                ? "1 file selected"
+                : `${fileCount} files selected`;
+          }
+        });
+
+        // --- Drag and Drop Handlers ---
+        function preventDefaults(e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+
+        ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+          document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        ["dragenter", "dragover"].forEach((eventName) => {
+          uploadArea.addEventListener(
+            eventName,
+            () => uploadArea.classList.add("dragover"),
+            false
+          );
+        });
+
+        ["dragleave", "drop"].forEach((eventName) => {
+          uploadArea.addEventListener(
+            eventName,
+            () => uploadArea.classList.remove("dragover"),
+            false
+          );
+        });
+
+        uploadArea.addEventListener("drop", function (e) {
+          const dt = e.dataTransfer;
+          const files = dt.files;
+          hiddenInput.files = files;
+          const changeEvent = new Event("change", { bubbles: true });
+          hiddenInput.dispatchEvent(changeEvent);
+        });
+      });
+
+      // --- Scroll Reveal Animation (Optional, requires elements with .reveal class) ---
+      const revealElements = document.querySelectorAll(".reveal");
+      if (revealElements.length > 0) {
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              // Optional: Stop observing once it's active
+              // observer.unobserve(entry.target);
+            } else {
+              // Optional: Remove 'active' if it scrolls out of view
+              // entry.target.classList.remove('active');
+            }
+          });
+        }, observerOptions);
+
+        revealElements.forEach((el) => observer.observe(el));
+
+        window.addEventListener("load", () => {
+          revealElements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            const isVisible =
+              rect.top <= window.innerHeight &&
+              rect.bottom >= 0 &&
+              rect.left <= window.innerWidth &&
+              rect.right >= 0;
+            if (isVisible) {
+              el.classList.add("active");
+            }
+          });
+        });
+      }
+    </script>
   </body>
 </html>

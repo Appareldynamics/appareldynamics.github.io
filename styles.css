@@ -1,9 +1,14 @@
 :root {
   --primary-dark: #191a1a;
+  --primary-dark-rgb: 25, 26, 26; /* Added for rgba */
   --accent-orange: #fe9d2a;
+  --accent-orange-rgb: 254, 157, 42; /* Added for rgba */
   --brand-blue: #3c2cec;
   --neutral-cream: #f5f2e8;
+  --neutral-cream-rgb: 245, 242, 232; /* Added for rgba */
   --text-dark: #1f1300;
+  --text-dark-rgb: 31, 19, 0; /* Added for rgba */
+
   --font-display: "Nunito", sans-serif;
   --font-body: "Inter", sans-serif;
 }
@@ -33,16 +38,19 @@ h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
+  color: var(--neutral-cream);
 }
 
 h3 {
   font-family: var(--font-display);
   font-weight: 900;
+  color: var(--neutral-cream);
 }
 
 h4 {
   font-family: var(--font-display);
   margin-bottom: 1rem;
+  color: var(--neutral-cream);
 }
 
 /* Section Styles */
@@ -52,25 +60,31 @@ section {
   padding: 5rem 5%;
 }
 
+/* Gradient separator below sections */
 section::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 10%;
   width: 80%;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(
     90deg,
     transparent,
-    var(--accent-orange),
+    var(--accent-orange) 50%,
     transparent
   );
-  opacity: 0.5;
+  opacity: 0.8;
+}
+
+/* Alternate background for even sections */
+section:nth-child(even) {
+  background: rgba(var(--primary-dark-rgb), 0.95);
 }
 
 /* Header & Navigation */
 .header {
-  background: rgba(25, 26, 26, 0.95);
+  background: rgba(var(--primary-dark-rgb), 0.95);
   padding: 1rem 5%;
   backdrop-filter: blur(10px);
   position: fixed;
@@ -92,6 +106,7 @@ section::after {
   font-weight: 900;
   font-size: 1.5rem;
   color: var(--accent-orange);
+  text-decoration: none;
 }
 
 .nav-links {
@@ -133,66 +148,7 @@ section::after {
   overflow: hidden;
 }
 
-/* Hero Video Background */
-.video-background {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 100vh;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-}
-
-.video-background:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100px;
-  height: 50px;
-  background: rgba(25, 26, 26, 0.9);
-  z-index: 3;
-}
-
-.video-background iframe {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-/* Full-width Gradient Overlay */
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    45deg,
-    rgba(25, 26, 26, 0.9) 0%,
-    rgba(25, 26, 26, 0.7) 50%,
-    rgba(25, 26, 26, 0.9) 100%
-  );
-  z-index: 1;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(25, 26, 26, 0.9),
-    rgba(25, 26, 26, 0.6)
-  );
-  z-index: 1;
-}
-
-/* Video Container */
+/* Video Background */
 .video-container {
   position: absolute;
   top: 50%;
@@ -200,7 +156,7 @@ section::after {
   width: 100vw;
   height: 56.25vw; /* 16:9 aspect ratio */
   min-height: 100vh;
-  min-width: 177.77vh; /* 16:9 aspect ratio */
+  min-width: 177.77vh; /* 16:9 aspect ratio to cover 100vh */
   transform: translate(-50%, -50%);
   overflow: hidden;
   z-index: 0;
@@ -214,6 +170,23 @@ section::after {
   height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;
+  pointer-events: none;
+}
+
+/* Full-width Gradient Overlay */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(var(--primary-dark-rgb), 0.9) 0%,
+    rgba(var(--primary-dark-rgb), 0.7) 50%,
+    rgba(var(--primary-dark-rgb), 0.9) 100%
+  );
+  z-index: 1;
 }
 
 .hero-content {
@@ -223,16 +196,55 @@ section::after {
   padding: 0 2rem;
 }
 
-.hero h1 {
+/* Updated Hero Section - Heading */
+.hero-heading {
   font-family: var(--font-display);
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+  font-size: 3.8rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  animation: textReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--neutral-cream);
 }
 
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Updated Hero Section - Subtitle */
 .hero-sub {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  color: var(--accent-orange);
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(
+    90deg,
+    var(--accent-orange),
+    var(--neutral-cream)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Define the gradient animation keyframes */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* CTA Buttons */
@@ -251,22 +263,26 @@ section::after {
 
 .cta-main:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(254, 157, 42, 0.3);
+  box-shadow: 0 5px 15px rgba(var(--accent-orange-rgb), 0.3);
 }
 
 /* Features Section */
 .features {
+  background: rgba(var(--text-dark-rgb), 0.1);
+}
+
+/* Apply grid styles directly to the content wrapper, *without* max-width here */
+.features .feature-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  padding: 4rem 5%;
-  background: rgba(31, 19, 0, 0.1);
+  margin-top: 2rem;
 }
 
 .feature-card {
   padding: 2rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(245, 242, 232, 0.1);
+  border: 1px solid rgba(var(--neutral-cream-rgb), 0.1);
   border-radius: 8px;
   transition: all 0.3s ease;
 }
@@ -284,8 +300,7 @@ section::after {
 
 /* Process Section */
 .process {
-  padding: 4rem 5%;
-  background: rgba(31, 19, 0, 0.1);
+  background: rgba(var(--text-dark-rgb), 0.1);
 }
 
 .process-steps {
@@ -297,7 +312,7 @@ section::after {
 
 .step {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(245, 242, 232, 0.1);
+  border: 1px solid rgba(var(--neutral-cream-rgb), 0.1);
   border-radius: 8px;
   padding: 2rem;
   text-align: left;
@@ -355,17 +370,20 @@ section::after {
 
 /* Supply Network Section */
 .supply-network {
-  background: rgba(31, 19, 0, 0.2);
+  background: rgba(var(--primary-dark-rgb), 0.95);
   color: var(--neutral-cream);
-  padding: 4rem 5%;
   text-align: center;
 }
 
-.facility-grid {
+/* Apply grid styles directly to the grid wrapper, *without* max-width here */
+.supply-network .facility-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  max-width: 1200px; /* Add max-width here if you want it centered */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .facility {
@@ -373,113 +391,21 @@ section::after {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   text-align: center;
-  border: 1px solid rgba(245, 242, 232, 0.1);
+  border: 1px solid rgba(var(--neutral-cream-rgb), 0.1);
 }
 
-/* CTA Section */
-.cta-section {
-  padding: 4rem 5%;
-}
-
-.cta-box {
-  background: var(--brand-blue);
-  color: var(--neutral-cream);
-  padding: 4rem 2rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.cta-form {
-  margin-top: 2rem;
-}
-
-.cta-form input {
-  padding: 1rem;
-  width: 300px;
-  margin-right: 1rem;
-  border: none;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-cream);
-}
-
-.cta-form input::placeholder {
-  color: rgba(245, 242, 232, 0.7);
-}
-
-/* Footer */
-.footer {
-  background: rgba(25, 26, 26, 0.95);
-  color: var(--neutral-cream);
-  padding: 4rem 5%;
-  backdrop-filter: blur(10px);
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
-}
-
-.footer-section a {
-  display: block;
-  color: var(--neutral-cream);
-  text-decoration: none;
-  margin: 0.5rem 0;
-  transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-  color: var(--accent-orange);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .hero {
-    padding: 6rem 1rem;
-    margin-top: 60px;
-  }
-
-  .process-steps {
-    grid-template-columns: 1fr;
-  }
-
-  .cta-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cta-form input {
-    margin-right: 0;
-    margin-bottom: 1rem;
-    width: 100%;
-    max-width: 300px;
-  }
-}
 /* Testimonials Marquee */
 .testimonials-marquee {
-  background: rgba(31, 19, 0, 0.15);
-  padding: 5rem 0 4rem;
+  background: #0c0f14;
+  padding: 5rem 0 4rem; /* Removed left/right padding */
   position: relative;
   overflow: hidden;
 }
 
-.testimonials-marquee {
-  background: #0c0f14; /* Change from rgba(31, 19, 0, 0.15) to #0c0f14 */
-  padding: 5rem 0 4rem;
-  position: relative;
-  overflow: hidden;
+/* Center the heading manually */
+.testimonials-marquee h2 {
+  padding: 0 5%; /* Restore heading horizontal padding */
+  margin-bottom: 3rem;
 }
 
 .marquee-container {
@@ -494,7 +420,7 @@ section::after {
   gap: var(--gap);
   animation: scroll 30s linear infinite;
   width: max-content;
-  padding: 1rem 0;
+  padding: 1rem 5%; /* Apply horizontal padding here */
 }
 
 .marquee-track img {
@@ -504,6 +430,7 @@ section::after {
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 @keyframes scroll {
@@ -520,12 +447,523 @@ section::after {
   animation-play-state: paused;
 }
 
+/* Client Stats */
+.client-stats {
+  background: rgba(var(--accent-orange-rgb), 0.1);
+}
+
+/* Apply grid styles directly to the grid wrapper, *without* max-width here */
+.client-stats .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  max-width: 1200px; /* Add max-width here if you want it centered */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(var(--accent-orange-rgb), 0.2);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--accent-orange);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: var(--neutral-cream);
+}
+
+/* Case Studies */
+.case-studies {
+  background: rgba(var(--primary-dark-rgb), 0.95);
+}
+
+/* Apply grid styles directly to the grid wrapper, *without* max-width here */
+.case-studies .case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem auto 0;
+  max-width: 1200px; /* Add max-width here if you want it centered */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-card {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-card:hover {
+  transform: translateY(-5px);
+}
+
+.client-logo {
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto 1rem;
+  display: block;
+  object-fit: contain;
+}
+
+.case-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-description {
+  margin-bottom: 1rem;
+}
+
+.case-stats {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+  flex-shrink: 0;
+}
+
+.case-stat {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--accent-orange);
+}
+
+.stat-desc {
+  font-size: 0.9rem;
+  color: rgba(var(--neutral-cream-rgb), 0.8);
+}
+
+.case-link {
+  color: var(--accent-orange);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: auto;
+  transition: opacity 0.3s ease;
+  align-self: flex-start;
+}
+
+.case-link:hover {
+  opacity: 0.8;
+}
+
+/* Value Props Section */
+.value-props {
+  background: rgba(var(--text-dark-rgb), 0.1);
+}
+
+/* Apply grid styles directly to the container, *without* max-width here */
+.value-props .prop-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-top: 2rem;
+  max-width: 1200px; /* Add max-width here if you want it centered */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prop-card {
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(var(--accent-orange-rgb), 0.2);
+  transition: transform 0.3s ease;
+}
+
+.prop-card:hover {
+  transform: translateY(-10px);
+}
+
+.main-prop {
+  border: 2px solid var(--accent-orange);
+  box-shadow: 0 0 30px rgba(var(--accent-orange-rgb), 0.2);
+}
+
+.prop-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.prop-list li {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 4px solid var(--accent-orange);
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 4rem 5%;
+}
+
+.cta-box {
+  background: var(--brand-blue);
+  color: var(--neutral-cream);
+  padding: 4rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  /* Removed max-width here to allow it to fill section padding */
+  margin: 0 auto; /* Keep auto margins to center if container added later */
+}
+
+.cta-form {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-form input[type="email"] {
+  flex-grow: 1;
+  max-width: 400px;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-cream);
+}
+
+.cta-form input::placeholder {
+  color: rgba(var(--neutral-cream-rgb), 0.7);
+}
+
+/* Footer */
+.footer {
+  background: rgba(var(--primary-dark-rgb), 0.95);
+  color: var(--neutral-cream);
+  padding: 4rem 5%;
+  backdrop-filter: blur(10px);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  text-align: center;
+}
+
+.footer-section a {
+  display: block;
+  color: var(--neutral-cream);
+  text-decoration: none;
+  margin: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--accent-orange);
+}
+
+.social-links {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.social-links a {
+  color: var(--accent-orange);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.social-links a:hover {
+  opacity: 0.8;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: #121212;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  position: relative;
+}
+
+.modal-content .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  color: var(--neutral-cream);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-content .close-btn:hover {
+  color: var(--accent-orange);
+}
+
+.modal-content h2 {
+  color: var(--accent-orange);
+  font-family: var(--font-display);
+  font-size: 28px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.modal-content input,
+.modal-content textarea {
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  color: var(--neutral-cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: var(--accent-orange);
+  outline: none;
+}
+
+.upload-button {
+  background: transparent;
+  border: 2px dashed var(--accent-orange);
+  border-radius: 8px;
+  color: var(--neutral-cream);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.upload-button:hover {
+  background: rgba(var(--accent-orange-rgb), 0.1);
+}
+
+.upload-button.dragover {
+  border-color: var(--accent-orange);
+  background: rgba(var(--accent-orange-rgb), 0.2);
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.submit-btn {
+  background: var(--accent-orange);
+  border: none;
+  border-radius: 8px;
+  color: #121212;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 24px;
+  flex: 1;
+  transition: transform 0.3s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(var(--accent-orange-rgb), 0.3);
+}
+
+.email-btn {
+  background: transparent;
+  border: 2px solid var(--accent-orange);
+  border-radius: 8px;
+  color: var(--accent-orange);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 14px 24px;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.email-btn:hover {
+  background: rgba(var(--accent-orange-rgb), 0.1);
+}
+
+.email-btn svg path {
+  fill: currentColor;
+}
+
+/* Copy Toast */
+.copy-toast {
+  position: fixed;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-orange);
+  color: var(--primary-dark);
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  transition: bottom 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  font-size: 0.9rem;
+}
+
+.copy-toast.visible {
+  bottom: 20px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+  }
+
+  .hero {
+    padding: 8rem 1rem 6rem;
+  }
+
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+
+  /* Adjust min width for grids within sections */
+  .features .feature-grid,
+  .client-stats .stats-grid,
+  .case-studies .case-grid,
+  .supply-network .facility-grid,
+  .value-props .prop-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    /* Re-add max-width if you still want centering on small screens,
+        or leave it off to let them fill the 5% padding space */
+    /* max-width: 100%; */ /* Example if you want max-width */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Restore padding on cards/elements within mobile grids */
+  .feature-card,
+  .stat-card,
+  .case-card,
+  .facility,
+  .prop-card {
+    padding: 1.5rem;
+  }
+
+  .case-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .case-stat {
+    padding: 0.8rem;
+  }
+
+  .cta-form {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cta-form input[type="email"] {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: 300px;
+  }
+
   .marquee-track {
     gap: 1rem;
+    padding: 1rem 2%; /* Adjust horizontal padding for marquee */
   }
 
   .marquee-track img {
     max-height: 120px;
+  }
+
+  .testimonials-marquee h2 {
+    padding: 0 2%; /* Match section padding */
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .submit-btn,
+  .email-btn {
+    width: 100%;
+    flex: none;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .modal-content .close-btn {
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+  }
+  .copy-toast {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 }

@@ -951,22 +951,30 @@ section:nth-child(even) {
 /* Copy Toast */
 .copy-toast {
   position: fixed;
-  bottom: -50px;
+  /* Start positioned where it will end up, but hidden */
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  /* Use transform to move it off-screen initially */
+  transform: translate(-50%, 100px); /* Move down by more than its height */
   background: var(--accent-orange);
   color: var(--primary-dark);
   padding: 0.8rem 1.5rem;
   border-radius: 4px;
-  transition: bottom 0.3s ease;
+  /* Transition transform and opacity */
+  transition: transform 0.3s ease, opacity 0.3s ease;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 1001;
   font-size: 0.9rem;
+  opacity: 0; /* Initially fully transparent */
+  pointer-events: none; /* Ignore mouse events when hidden */
 }
 
 .copy-toast.visible {
-  bottom: 20px;
+  /* Animate it back to its intended position */
+  transform: translate(-50%, 0);
+  opacity: 1; /* Make it fully opaque */
+  pointer-events: auto; /* Allow interaction if needed */
 }
 
 /* Responsive Design */

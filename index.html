@@ -470,7 +470,6 @@
         );
       }
 
-      // --- Email Copy Functionality ---
       if (emailBtn && toast) {
         emailBtn.addEventListener("click", function (e) {
           e.preventDefault(); // Prevent default button behavior
@@ -478,7 +477,7 @@
           navigator.clipboard
             .writeText(email)
             .then(() => {
-              // Show toast notification
+              // Show toast notification - ONLY adds visible class here
               toast.classList.add("visible");
 
               // Hide toast after 2 seconds
@@ -488,19 +487,9 @@
             })
             .catch((err) => {
               console.error("Failed to copy email:", err);
-              // Optional: Show an error message to the user in the UI
               alert("Failed to copy email. Please copy it manually: " + email);
             });
         });
-      } else {
-        if (!emailBtn)
-          console.warn(
-            "Email button (#emailBtn) not found for copy functionality."
-          );
-        if (!toast)
-          console.warn(
-            "Copy toast element (.copy-toast) not found for copy functionality."
-          );
       }
 
       // --- File Upload Implementation ---
